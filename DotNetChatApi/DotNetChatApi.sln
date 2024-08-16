@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34622.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetChatApi", "DotNetChatApi\DotNetChatApi.csproj", "{9B7FEEAF-C853-44CA-96F7-714F26B47F6E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetChatApi.Contracts", "DotNetChatApi.Contracts\DotNetChatApi.Contracts.csproj", "{5B16EA62-ED2B-4B99-8721-B8372E5261B5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9B7FEEAF-C853-44CA-96F7-714F26B47F6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B7FEEAF-C853-44CA-96F7-714F26B47F6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B7FEEAF-C853-44CA-96F7-714F26B47F6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B7FEEAF-C853-44CA-96F7-714F26B47F6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B16EA62-ED2B-4B99-8721-B8372E5261B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B16EA62-ED2B-4B99-8721-B8372E5261B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B16EA62-ED2B-4B99-8721-B8372E5261B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B16EA62-ED2B-4B99-8721-B8372E5261B5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AC8496C5-28FA-406D-859A-7141FBAFF747}
+	EndGlobalSection
+EndGlobal
