@@ -1,4 +1,4 @@
-﻿namespace DotNetChatApi.Contracts.Dtos
+﻿namespace DotNetChatApi.Contracts
 {
     public class BaseOperationInputDto
     {

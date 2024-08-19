@@ -1,3 +1,4 @@
+using DotNetChatApi.Contracts;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -8,6 +9,8 @@ namespace DotNetChatApi
     public class Program
     {
         const string CORS_POLICY = "LocalHostPolicy";
+
+        DatabaseContext dbContext = null;
 
         private static void ConfigureDatabase(ref WebApplicationBuilder builder)
         {
@@ -75,21 +78,19 @@ namespace DotNetChatApi
             builder.Services.AddSwaggerGen();
         }
 
-        private static void ConfigureApp(ref WebApplication app)
+        private static WebApplication ConfigureApp(ref WebApplicationBuilder builder)
         {
+            var app = builder.Build();
+
             app.UseCors(CORS_POLICY);
+            var scope = app.Services.CreateScope();
 
+            var services = scope.ServiceProvider;
 
-            using (var scope = app.Services.CreateScope())
-            {
-                var services = scope.ServiceProvider;
+            var dbContext = new DatabaseContext(services.GetRequiredService<DbContextOptions<DatabaseContext>>());
+            dbContext.Database.Migrate();
 
-                var dbContext = new DatabaseContext(services.GetRequiredService<DbContextOptions<DatabaseContext>>());
-                dbContext.Database.Migrate();
-
-                dbContext.SeedDatabase(services);
-            }
-
+            dbContext.SeedDatabase(services);
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
@@ -104,13 +105,13 @@ namespace DotNetChatApi
             app.UseAuthorization();
 
             app.MapControllers();
+
+            return app;
         }
 
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-            builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
-
 
             // Add services to the container.
             builder.Services.AddControllers();
@@ -122,10 +123,10 @@ namespace DotNetChatApi
 
             ConfigureDatabase(ref builder);
 
-            var app = builder.Build();
+            builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
+            builder.Services.AddSingleton<IDatabaseProvider, DatabaseProvider>();
 
-
-            ConfigureApp(ref app);
+            var app = ConfigureApp(ref builder);
 
             app.Run();
         }

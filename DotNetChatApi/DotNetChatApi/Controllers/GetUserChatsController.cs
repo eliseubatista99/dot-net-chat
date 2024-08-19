@@ -8,8 +8,9 @@ namespace DotNetChatApi
     [ApiController]
     public class GetUserChatsController : DotNetChatApiBaseController<GetUserChatsOperationInputDto, GetUserChatsOperationOutputDto>
     {
-        public GetUserChatsController(DatabaseContext context, IConfiguration configs) : base(context, configs)
+        public GetUserChatsController(DatabaseContext context, IConfiguration configs, IDatabaseProvider databaseProvider) : base(context, configs, databaseProvider)
         {
+
         }
 
         /// <summary>
@@ -30,12 +31,11 @@ namespace DotNetChatApi
                 return OperationResponse;
             }
 
+            var userChats = databaseProvider.RetrieveChatsForUser(input.UserName);
+
             OperationResponse.SetData(new GetUserChatsOperationOutputDto
             {
-                Chats = new List<Chat>
-                {
-
-                }
+                Chats = userChats,
             });
 
             return OperationResponse;

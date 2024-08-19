@@ -2,6 +2,6 @@
 {
     public class GetUserChatsOperationOutputDto
     {
-        public required List<Chat> Chats { get; set; }
+        public required List<ChatDto> Chats { get; set; }
     }
 }

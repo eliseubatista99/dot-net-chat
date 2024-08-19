@@ -5,15 +5,17 @@ namespace DotNetChatApi
 {
     public class DotNetChatApiBaseController<InputDto, OutputDto> : ControllerBase
     {
-        protected readonly DatabaseContext _context;
-        protected readonly IConfiguration _configs;
+        protected readonly DatabaseContext context;
+        protected readonly IConfiguration configs;
+        protected readonly IDatabaseProvider databaseProvider;
 
         protected BaseOperationOutputDto<OutputDto> OperationResponse;
 
-        public DotNetChatApiBaseController(DatabaseContext context, IConfiguration configs)
+        public DotNetChatApiBaseController(DatabaseContext context, IConfiguration configs, IDatabaseProvider databaseProvider)
         {
-            _context = context;
-            _configs = configs;
+            this.context = context;
+            this.configs = configs;
+            this.databaseProvider = databaseProvider;
 
             this.OperationResponse = new BaseOperationOutputDto<OutputDto>();
         }

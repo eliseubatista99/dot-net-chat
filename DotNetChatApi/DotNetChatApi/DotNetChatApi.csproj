@@ -25,4 +25,8 @@
     <ProjectReference Include="..\DotNetChatApi.Contracts\DotNetChatApi.Contracts.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Helpers\" />
+  </ItemGroup>
+
 </Project>
